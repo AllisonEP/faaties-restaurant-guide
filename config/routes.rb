@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'sessions#home'
   resources :cities
   resources :restaurants
   resources :users
