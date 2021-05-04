@@ -5,7 +5,7 @@ class RestaurantsController < ApplicationController
 
     def create
         @restaurant = current_user.restaurants.new(restaurant_params)
-        @restaurant = current_volunteer.projects.build(restaurant_params)
+        @restaurant = current_user.cities.build(restaurant_params)
         if @restaurant.save!
             flash[:notice] = "Restaurant saved!"
             redirect_to restaurants_path
