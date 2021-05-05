@@ -18,6 +18,7 @@ class RestaurantsController < ApplicationController
     end 
 
     def index
+        @restaurant = Restaurant.all
     end 
 
     def show
@@ -25,13 +26,24 @@ class RestaurantsController < ApplicationController
     end
 
     def edit
+        @restaurant = Restaurant.find_by_id(params[:id])
     end
 
-    def destroy;id
+    def update
+        @restaurant = Restaurant.find_by_id(params[:id])
+        @restaurant.update(restaurant_params)
+        if @restaurant.save
+            redirect_to restaurant_path      
+        else
+           render :edit 
+        end
+     end
+
+    def destroy
         @restaurant = Restaurant.find_by(params[:id]).destroy
-        if @restuarant.destroy!
+        if @restaurant.destroy!
             flash[:notice] = "Okay, its gone!"
-            redirect_to root_path
+            redirect_to restaurants_path
         else
             render :show
     end 
