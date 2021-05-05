@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy'
 
 
-  resources :cities, only: [:new, :index, :show, :create] 
+  resources :cities, only: [:new, :index, :show, :create, :edit, :update, :destroy] 
   resources :restaurants, only: [:new, :create, :index, :show, :edit, :update, :destroy] 
   resources :users, only: [:new, :index, :show, :create, :destroy] 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

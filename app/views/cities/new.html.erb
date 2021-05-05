@@ -1,14 +1,30 @@
-<h1> New City </h1>
+<h1> Add a new Layover! </h1>
 
-<%= form_for(@city) do |f| %>
+<%= form_for @city do |f| %>
 <p>
 
-<%= f.label :name%>
-<%= f.text_field :name%>
-<div>
-</div>
-<%= f.label :state_or_country%>
-<%= f.text_field :state_or_country%>
-<%= f.submit %>
-</p>
-<% end %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+    <div>
+    </div>
+  <%= f.label :state_or_country%>
+  <%= f.text_field :state_or_country%>
+    <div>
+    </div>
+  <%=f.label :airport_code%>
+  <%= f.text_field :airport_code%>
+    <div>
+    </div>
+  <%=f.label :hotel%>
+  <%= f.text_field :hotel%>
+    <div>
+    </div>
+    <%= f.fields_for :restaurant do |restaurant_builder| %>
+    <%= restaurant_builder.label :name %><br>
+    <%= restaurant_builder.text_field :name%><br>
+      <div>
+    </div>
+    <% end %> 
+  <%= f.submit %>
+  </p>
+<% end %> 
