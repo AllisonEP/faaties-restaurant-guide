@@ -1,15 +1,16 @@
 class RestaurantsController < ApplicationController
-    
-    before_action :redirect_if_not_logged_in?
+     before_action :redirect_if_not_logged_in?
+
     def new
-        @restuarant = Restaurant.new
+        @restaurant = Restaurant.new
+        @restaurant.build_city
     end 
 
     def create
         @restaurant = current_user.restaurants.new(restaurant_params)
-        @restaurant = current_user.cities.build(restaurant_params)
+        @restaurant = current_user.restaurants.build(restaurant_params)
         if @restaurant.save!
-            flash[:notice] = "Restaurant saved!"
+            flash[:notice] = "restaurant saved!"
             redirect_to restaurants_path
         else
             render :new
@@ -31,12 +32,22 @@ class RestaurantsController < ApplicationController
         if @restuarant.destroy!
             flash[:notice] = "Okay, its gone!"
             redirect_to root_path
+        else
+            render :show
     end 
 end
 
 private
 
-def restaurant_params
-    params.require(:restaurant).permit(:name, :hours, :long_or_short_layover, :price_point, :discount, :additional_info)
-end
+    def restaurant_params
+        params.require(:restaurant).permit(:name, 
+        :hours, 
+        :long_or_short_layover, 
+        :price_point, 
+        :discount,
+        :additional_info,
+        :city_ids,
+        :user_id,
+        city_attributes: [:name])
+    end
 end

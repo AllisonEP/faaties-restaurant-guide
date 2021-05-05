@@ -1,0 +1,14 @@
+<h1> New City </h1>
+
+<%= form_for(@city) do |f| %>
+<p>
+
+<%= f.label :name%>
+<%= f.text_field :name%>
+<div>
+</div>
+<%= f.label :state_or_country%>
+<%= f.text_field :state_or_country%>
+<%= f.submit %>
+</p>
+<% end %>

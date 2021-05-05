@@ -1,1 +1,40 @@
-<h1> restaurant new </h1>
+<h1> Add a new restaurant! </h1>
+
+<%= form_for @restaurant do |f| %>
+<p>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+    <div>
+    </div>
+  <%= f.label :hours%>
+  <%= f.text_field :hours%>
+    <div>
+    </div>
+  <%=f.label :discount%>
+  <%= f.text_field :discount%>
+    <div>
+    </div>
+  <%=f.label :additional_info%>
+  <%= f.text_field :additional_info%>
+    <div>
+    </div>
+    Long or short layover?
+     <div>
+    </div>
+    <%= f.select :long_or_short_layover, ['Long', 'Short']%>
+    <div>
+    </div>
+    <%= f.select :price_point, ['Newhire Pay', 'Ten Year Pay', 'Topout Pay']%>
+    <div>
+    </div>
+    <%= f.collection_select :city_id, City.all, :id, :name %>
+    <%= f.fields_for :city do |city_builder| %>
+    <%= city_builder.label :name %><br>
+    <%= city_builder.text_field :name%><br>
+      <div>
+    </div>
+    <% end %> 
+  <%= f.submit %>
+  </p>
+<% end %> 

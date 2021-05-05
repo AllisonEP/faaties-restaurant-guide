@@ -10,7 +10,7 @@ class CitiesController < ApplicationController
         @city = current_user.restaurants.build(city_params)
         if @city.save!
             flash[:notice] = "city saved!"
-            redirect_to citys_path
+            redirect_to cities_path
         else
             render :new
         end   
@@ -28,6 +28,9 @@ class CitiesController < ApplicationController
     private
 
     def city_params
-        params.require(:city).permit(:state_or_country, :airport_code, :hotel)
+        params.require(:city).permit(:name, 
+        :state_or_country, 
+        :airport_code, 
+        :hotel)
     end 
 end
