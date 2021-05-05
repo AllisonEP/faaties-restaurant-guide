@@ -11,7 +11,7 @@ class RestaurantsController < ApplicationController
         @restaurant = current_user.restaurants.build(restaurant_params)
         if @restaurant.save!
             flash[:notice] = "restaurant saved!"
-            redirect_to restaurants_path
+            redirect_to restaurant_path(@restaurant)
         else
             render :new
         end   
