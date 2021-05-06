@@ -1,21 +1,43 @@
 class CitiesController < ApplicationController
     before_action :redirect_if_not_logged_in?
     
+
     def new
-        @city = City.new
-        @city.citys.build(name: 'name')
-    end 
+        if params[:restaurant_id] && restaurant = Restaurant.find_by_id(params[:restaurant_id])
+            @restaurant = restaurant.restaurants.build
+        else
+            @restaurant = Restaurant.new
+            @city = @restaurant.build_city
+        end 
+    end
 
     def create
-        @city = current_user.cities.new(city_params)
+        #@restaurant = current_user.restaurants.new(restaurant_params)
         @city = current_user.cities.build(city_params)
         if @city.save!
             flash[:notice] = "city saved!"
-            redirect_to city_path(@city)
+            redirect_to cities_path
         else
+            @city.build_city unless @city.city 
             render :new
         end   
     end 
+
+    # def new
+    #     @city = City.new
+    #     @city.restaurants.build(name: 'name')
+    # end 
+
+    # def create
+    #     @city = current_user.cities.new(city_params)
+    #     @city = current_user.cities.build(city_params)
+    #     if @city.save!
+    #         flash[:notice] = "city saved!"
+    #         redirect_to city_path(@city)
+    #     else
+    #         render :new
+    #     end   
+    # end 
 
     def index
         @city = City.all
@@ -39,15 +61,17 @@ class CitiesController < ApplicationController
         end
      end
 
-     def destroy
-        @city = City.find_by(params[:id]).destroy
+     
+    def destroy
+        @city = City.find_by_id(params[:id]).destroy
         if @city.destroy!
             flash[:notice] = "Okay, its gone!"
-            redirect_to cities_path
+           redirect_to cities_path
         else
             render :show
+        end
     end 
-end
+
     private
 
     def city_params
@@ -56,6 +80,6 @@ end
         :airport_code, 
         :hotel,
         :user_id,
-        city_attributes: [:name])
+        restaurant_attributes: [:name])
     end 
 end

@@ -1,0 +1,24 @@
+<h1> Edit a layover! </h1>
+
+<%= form_for(@city) do |f| %>
+<p>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+    <div>
+    </div>
+  <%= f.label :hotel%>
+  <%= f.text_field :hotel%>
+    <div>
+    </div>
+  <%=f.label :airport_code%>
+  <%= f.text_field :airport_code%>
+    <div>
+    </div>
+  <%=f.label :state_or_country%>
+  <%= f.text_field :state_or_country%>
+    <div>
+    </div>
+  <%= f.submit %>
+  </p>
+<% end %> 

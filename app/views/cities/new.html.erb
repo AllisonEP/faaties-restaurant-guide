@@ -19,8 +19,9 @@
   <%= f.text_field :hotel%>
     <div>
     </div>
-    <%= f.fields_for :restaurant do |restaurant_builder| %>
-    <%= restaurant_builder.label :name %><br>
+   <h2>Or create a new Restaurant:</h2>
+    <%= f.fields_for :restaurant, Restaurant.new do |restaurant_builder| %>
+    <%= restaurant_builder.label :name, "Restaurant Name:" %><br>
     <%= restaurant_builder.text_field :name%><br>
       <div>
     </div>

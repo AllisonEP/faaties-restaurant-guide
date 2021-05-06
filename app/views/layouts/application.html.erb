@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FAAties Restaurant Guide</title>
+    <title>fAAties Restaurant Guide</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,23 +13,21 @@
   <body>
     <div>
     <% if logged_in?%>
-    <%= link_to "Create A Restaurant", new_restaurant_path%> |
-    <%= link_to "Current Restaurants", restaurants_path %> |
-    <%= link_to "Create a Layover City", new_city_path %> |
-     <%= link_to "Current Layover Cities", cities_path %> |
-    <%= link_to "Home", root_path%> |
-    <%= link_to "Logout", logout_path, method:"delete"%>
+      <%= link_to "Home", root_path%> |
+      <%= link_to "Create A Restaurant", new_restaurant_path %> |
+      <%= link_to "Current Restaurants", restaurants_path %> |
+      <%= link_to "Create a Layover City", new_city_path %> |
+      <%= link_to "Current Layover Cities", cities_path %> |
+      <%= link_to "Logout", logout_path, method:"delete"%>
     <%else%>
-    <%=link_to "Signup", signup_path %> |
-    
-    <%=link_to "Login", login_path %> 
+      <%=link_to "Signup", signup_path %> |
+      <%=link_to "Login", login_path %> 
     <% end %>
-  <div>
-   <%if flash[:message]%>
-  <%= flash[:message]%>
-
+    <div>
+    <%if flash[:message]%>
+      <%= flash[:message]%>
     <% end %>
-    <%= @error%>
+      <%= @error%>
     <%= yield %>
   </body>
 </html>
