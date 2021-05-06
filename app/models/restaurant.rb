@@ -1,6 +1,7 @@
 class Restaurant < ApplicationRecord
   belongs_to :user
   belongs_to :city
+  has_many :recommendations
   accepts_nested_attributes_for :city, reject_if: :all_blank
   #validates :city_id, presence: true
 

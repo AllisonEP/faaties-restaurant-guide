@@ -10,13 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_30_041914) do
+ActiveRecord::Schema.define(version: 2021_05_06_204629) do
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.string "state_or_country"
     t.string "airport_code"
     t.string "hotel"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "recommendations", force: :cascade do |t|
+    t.string "try"
+    t.string "avoid"
+    t.integer "restaurant_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

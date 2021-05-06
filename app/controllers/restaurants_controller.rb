@@ -6,7 +6,7 @@ class RestaurantsController < ApplicationController
 
     def new
         if params[:city_id] && !City.exists?(params[:city_id])
-            redirect_to citys_path, alert: "city not found"
+            redirect_to cities_path, alert: "city not found"
           else
             @restaurant = Restaurant.new(city_id: params[:city_id])
           end

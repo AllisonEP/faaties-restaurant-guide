@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :recommendations
   root 'sessions#home'
 
 
@@ -14,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :restaurants
   resources :cities
+  resources :recommendations
 
   resources :cities, only: [:new, :index, :show, :create, :edit, :update, :destroy] do 
     resources :restaurants, only: [:new, :create, :index, :show, :edit, :update, :destroy] 
