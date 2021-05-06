@@ -75,8 +75,8 @@ class RestaurantsController < ApplicationController
      end
 
     def destroy
-        @restaurant = Restaurant.find_by(params[:id])
-        @restaurant.destroy
+        @restaurant = Restaurant.find_by_id(params[:id]).destroy
+        #@restaurant.destroy
         if @restaurant.destroy!
             flash[:notice] = "Okay, its gone!"
             redirect_to restaurants_path

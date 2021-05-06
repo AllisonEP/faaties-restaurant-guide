@@ -2,23 +2,17 @@ class RecommendationsController < ApplicationController
     before_action :redirect_if_not_logged_in?
 
     def new
-        if params[:restaurant_id] && !Restaurant.exists?(params[:restaurant_id])
-            redirect_to recommendations_path, alert: "Rec. not found"
-          else
-            @recommendaton = Recommendation.new(restaurant_id: params[:restaurant_id])
-          end
+    @recommendation = Recommendation.new
     end
-
-    def create
-        @recommendation = current_user.recommendations.new(recommendation_params)
-        #@restaurant = current_user.Restaurant.build(restaurant_params)
-        if @recommendation.save!
-            flash[:notice] = "rec. saved!"
-            redirect_to recommnedation_path(@recommendation)
-        else
-            render :new
-        end   
-    end
+# # 
+#     def create
+#         @recommendation = @restaurant_list.recommendations.new(restaurant_list_params)
+#         if @recommendation.save
+#           redirect_to @restaurant_list, success: 'Rec.created.'
+#         else
+#           render :show
+#         end
+#     end
 
     def show
     end
@@ -34,4 +28,11 @@ class RecommendationsController < ApplicationController
     def recommendation_params
         params.require(:recommendation).permit(:try, :avoid, :restaurant_id)
     end
+
+    def set_restaurant_list
+        @recommendation_list = RecommendationList.includes(:recommendations)
+                             .where(user: current_user)
+                             .find(params[:restaurant_list_id])
+      end
+    
 end
