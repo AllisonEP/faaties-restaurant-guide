@@ -1,0 +1,17 @@
+<h1> What do you recommend?! </h1>
+
+<%= form_with model: [@restaurant, @recommendation] do |f| %>
+  <p>
+   <%= f.hidden_field :restaurant_id, value: @restaurant.id %>
+   <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.label :try %>
+    <%= f.text_field :try %><br>
+    <div>
+    </div>
+    <%= f.label :avoid%>
+    <%= f.text_field :avoid%>
+    <div>
+    </div>
+    <%= f.submit %>
+  </p>
+<% end %> 
