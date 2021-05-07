@@ -1,7 +1,9 @@
 class SessionsController < ApplicationController
 
+    def new
+    end
+
     def create
-       
         user = User.find_by(username: params[:user][:username])
 
         if user && user.authenticate(params[:user][:password])
@@ -10,6 +12,7 @@ class SessionsController < ApplicationController
             redirect_to user_path(user)
 
         else 
+            
         flash[:message] = "How did you get this trip? Try again!"
         redirect_to "/login"
         end 
