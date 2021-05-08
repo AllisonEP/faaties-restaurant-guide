@@ -9,18 +9,18 @@ class RecommendationsController < ApplicationController
             @restaurant = Restaurant.find_by_id(params[:restaurant_id])
           end
     end
-# 
+
     def create
         @recommendation = Recommendation.new(recommendation_params)
         @recommendation = Recommendation.new(restaurant_id: params[:restaurant_id])
         @recommendation.user = current_user
 
-    if @recommendation.save
-       redirect_to restaurant_path(params[:restaurant_id])
-    else
-      render :new
+       if @recommendation.save
+          redirect_to restaurant_path(params[:restaurant_id])
+       else
+          render :new
+       end
     end
-  end
 
     def show
     end
