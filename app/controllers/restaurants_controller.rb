@@ -4,24 +4,33 @@ class RestaurantsController < ApplicationController
 
     
 
-    def new
+     def new
         if params[:city_id] && !City.exists?(params[:city_id])
+    #     if params[:city_id] && city = City.find_by_id(params[:city_id])
             redirect_to cities_path, alert: "city not found"
-          else
+    #         @city = city.cities.build
+           else
             @restaurant = Restaurant.new(city_id: params[:city_id])
-          end
-    end 
+    #         @city = City.new
+             @city = City.find_by_id(params[:city_id])
+
+           end
+     end 
+
+
 
     def create
-        @restaurant = current_user.restaurants.new(restaurant_params)
-        #@restaurant = current_user.Restaurant.build(restaurant_params)
-        if @restaurant.save!
-            flash[:notice] = "restaurant saved!"
-            redirect_to restaurant_path(@restaurant)
-        else
-            render :new
-        end   
-    end 
+        @restaurant = Restaurant.new(restaurant_params)
+        @restaurant = Restaurant.new(city_id: params[:city_id])
+        @restaurant.user = current_user
+
+      if @restaurant.save
+        redirect_to restaurant_path(params[:city_id])
+     else
+      render :new
+  end
+    end
+
 
     def index
         if params[:city_id]

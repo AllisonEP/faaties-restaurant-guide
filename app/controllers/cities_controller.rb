@@ -23,24 +23,17 @@ class CitiesController < ApplicationController
         end   
     end 
 
-    # def new
-    #     @city = City.new
-    #     @city.restaurants.build(name: 'name')
-    # end 
-
-    # def create
-    #     @city = current_user.cities.new(city_params)
-    #     @city = current_user.cities.build(city_params)
-    #     if @city.save!
-    #         flash[:notice] = "city saved!"
-    #         redirect_to city_path(@city)
-    #     else
-    #         render :new
-    #     end   
-    # end 
-
-    def index
-        @city = City.all
+    def index 
+        if params[:restaurant_id]
+            @restaurant = Restaurant.find_by(id: params[:restaurant_id])
+            if restaurant.nil?
+                redirect_to restaurants_path, alert: "Not found"
+            else
+                @city = @restaurant.cities 
+            end 
+        else
+            @city = City.all
+         end
     end 
 
     def show
