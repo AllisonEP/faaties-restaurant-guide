@@ -6,7 +6,6 @@ class RecommendationsController < ApplicationController
             redirect_to restaurants_path, alert: "restaurant not found"
           else
             @recommendation = Recommendation.new(restaurant_id: params[:restaurant_id])
-            # @recommendation.user = current_user
             @restaurant = Restaurant.find_by_id(params[:restaurant_id])
           end
     end
