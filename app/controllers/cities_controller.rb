@@ -4,7 +4,7 @@ class CitiesController < ApplicationController
 
     def new
         if params[:restaurant_id] && restaurant = Restaurant.find_by_id(params[:restaurant_id])
-            @restaurant = restaurant.restaurants.build
+           @restaurant = restaurant.restaurants.build
         else
             #@restaurant = Restaurant.new
             #@city = @restaurant.build_city
@@ -16,13 +16,13 @@ class CitiesController < ApplicationController
     def create
         @restaurant = current_user.restaurants.new #(restaurant_params)
         @city = current_user.cities.build(city_params)
-        if @city.save!
-            flash[:notice] = "city saved!"
-            redirect_to cities_path
-        else
-            @city.build_city unless @city.city 
-            render :new
-        end   
+            if @city.save!
+               flash[:notice] = "city saved!"
+               redirect_to cities_path
+            else
+               @city.build_city unless @city.city 
+               render :new
+            end   
     end 
 
 #     def create
@@ -40,15 +40,15 @@ class CitiesController < ApplicationController
     
     def index 
         if params[:restaurant_id]
-            @restaurant = Restaurant.find_by(id: params[:restaurant_id])
-            if restaurant.nil?
+           @restaurant = Restaurant.find_by(id: params[:restaurant_id])
+             if restaurant.nil?
                 redirect_to restaurants_path, alert: "Not found"
-            else
+             else
                 @city = @restaurant.cities 
-            end 
+             end 
         else
-            @city = City.all
-         end
+           @city = City.all
+        end
     end 
 
     def show
@@ -62,21 +62,21 @@ class CitiesController < ApplicationController
     def update
         @city = City.find_by_id(params[:id])
         @city.update(city_params)
-        if @city.save
-            redirect_to city_path      
-        else
-           render :edit 
-        end
-     end
+            if @city.save
+               redirect_to city_path      
+            else
+               render :edit 
+            end
+    end
 
      
     def destroy
         @city = City.find_by_id(params[:id]).destroy
-        if @city.destroy!
-            flash[:notice] = "Okay, its gone!"
-           redirect_to cities_path
-        else
-            render :show
+            if @city.destroy!
+                flash[:notice] = "Okay, its gone!"
+                redirect_to cities_path
+            else
+                render :show
         end
     end 
 
