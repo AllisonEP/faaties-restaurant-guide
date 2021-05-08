@@ -2,22 +2,21 @@
 
 <%= form_for(@user, url: '/signup') do |f| %>
 
-<%=f.label :username%>
-<%=f.text_field :username%>
-<br>
-<br>
-<br>
+    <%=f.label :username%>
+    <%=f.text_field :username%>
+    <br>
+    <br>
+    <br>
 You must enter your offocial comapny email here to register:
-<br>
-<%=f.label :email%>
-<%=f.email_field :email%>
-<br>
-<br>
-<br>
-<%=f.label :password%>
-<%=f.password_field :password%>
-<br>
-<br>
-
-<%= f.submit "Submit" %>
+    <br>
+    <%=f.label :email%>
+    <%=f.email_field :email%>
+    <br>
+    <br>
+    <br>
+    <%=f.label :password%>
+    <%=f.password_field :password%>
+    <br>
+    <br>
+    <%= f.submit "Submit" %>
 <% end %>

@@ -1,8 +1,8 @@
 <h1> Add a new Layover! </h1>
 
 <%= form_for @city do |f| %>
-<p>
 
+<p>
   <%= f.label :name %>
   <%= f.text_field :name %><br>
     <div>
@@ -23,9 +23,9 @@
     <%= f.fields_for :restaurant, Restaurant.new do |restaurant_builder| %>
     <%= restaurant_builder.label :name, "Restaurant Name:" %><br>
     <%= restaurant_builder.text_field :name%><br>
-      <div>
+    <div>
     </div>
     <% end %> 
   <%= f.submit %>
-  </p>
+</p>
 <% end %> 

@@ -1,12 +1,9 @@
-
-
 <p>
    <strong>restaurant:</strong> 
-   <% @city.restaurants.each do |restaurant|%><br />
-   <%= restaurant.name%>
-   <% end %>
-   <strong>state or country: </strong> <%= @city.state_or_country %><br />
-   <strong>Airport Code:</strong> <%= @city.airport_code %><br />
-   <strong>Hotel:</strong> <%= @city.hotel %><br />
-
+    <% @city.restaurants.each do |restaurant|%><br />
+    <%= restaurant.name%>
+    <% end %>
+      <strong>state or country: </strong> <%= @city.state_or_country %><br />
+      <strong>Airport Code:</strong> <%= @city.airport_code %><br />
+      <strong>Hotel:</strong> <%= @city.hotel %><br />
 </p>

@@ -4,20 +4,17 @@
 <%= form_for :user do |f| %>
 
 
-<%=f.label :username%>
-<%=f.text_field :username%>
-<br>
-<%=f.label :email %>
-<%=f.text_field :email%>
-<br>
-<%=f.label :password%>
-<%=f.password_field :password%>
+    <%=f.label :username%>
+    <%=f.text_field :username%>
+    <br>
+    <%=f.label :email %>
+    <%=f.text_field :email%>
+    <br>
+    <%=f.label :password%>
+    <%=f.password_field :password%>
 
-
-
-<%= f.submit "Login" %>
-
-<br>
-<br>
+    <%= f.submit "Login" %>
+    <br>
+    <br>
 
 <% end %>

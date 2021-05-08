@@ -3,8 +3,8 @@
 <table>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Content</th>
+      <th>City Names</th>
+      <th>Options</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -13,13 +13,11 @@
     <% @city.each do |city| %>
     <ul>
       <tr>
-       
-  <td><%= link_to city.name, city %></td>
-
+        <td><%= link_to city.name, city %></td>
         <td><%= link_to "Edit", edit_city_path(city) %></td>
         <td><%= link_to "Destroy", city, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
-      </ul>
+    </ul>
     <% end %>
   </tbody>
 </table>
