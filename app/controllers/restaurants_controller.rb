@@ -4,8 +4,6 @@ class RestaurantsController < ApplicationController
 
 
   def new
-    # @restaurant = Restaurant.new
-    # @restaurant.build_city
       if params[:city_id] && !City.exists?(params[:city_id])
         redirect_to citys_path, alert: "city not found"
       else
@@ -15,11 +13,12 @@ class RestaurantsController < ApplicationController
 
   def create
     @restaurant = current_user.restaurants.new(restaurant_params)
-  #@restaurant = current_user.restaurants.build(restaurant_params)
-  #@restaurant = current_user.Restaurant.build(restaurant_params)
     if @restaurant.save!
       flash[:notice] = "restaurant saved!"
       redirect_to restaurant_path(@restaurant)
+    else 
+      flash.now[:messages] = @restaurant.errors.full_messages
+      render :new
     end 
   end
 
@@ -68,13 +67,13 @@ class RestaurantsController < ApplicationController
           if @restaurant.save
              redirect_to @restaurant
           else
+            flash.now[:messages] = @restaurant.errors.full_messages
              render :edit
           end
      end
 
     def destroy
         @restaurant = Restaurant.find_by_id(params[:id]).destroy
-        #@restaurant.destroy
           if @restaurant.destroy!
              flash[:notice] = "Okay, its gone!"
              redirect_to restaurants_path
@@ -85,9 +84,9 @@ class RestaurantsController < ApplicationController
 
 private
 
-    # def set_city
-    #     @city = City.find_by(id: params[:city_id])
-    # end
+    def set_city
+        @city = City.find_by(id: params[:city_id])
+    end
 
   
     def restaurant_params

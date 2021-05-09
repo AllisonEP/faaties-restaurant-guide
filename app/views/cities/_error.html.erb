@@ -1,7 +1,5 @@
-<% if @city.errors.any? %>
-  <div id="error-exp">
-    <% @city.errors.full_messages.each do |msg|%>
-      <li> <%= msg %> </li>
-    <% end %>
-  </div>
-<% end %>
+<% if flash[:messages] %>
+2    <% flash[:messages].each do |message| %>
+3      <h2><%= message%></h2> <br>
+4    <% end %>
+5  <% end %>

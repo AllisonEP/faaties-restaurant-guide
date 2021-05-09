@@ -16,11 +16,10 @@ class CitiesController < ApplicationController
     def create
         @restaurant = current_user.restaurants.new 
         @city = current_user.cities.build(city_params)
-            if @city.save!
-               flash[:notice] = "city saved!"
+            if @city.save
                redirect_to cities_path
             else
-               @city.build_city unless @city.city 
+               flash.now[:messages] = @city.errors.full_messages
                render :new
             end   
     end 
@@ -65,6 +64,7 @@ class CitiesController < ApplicationController
             if @city.save
                redirect_to city_path      
             else
+               flash.now[:messages] = @city.errors.full_messages
                render :edit 
             end
     end
@@ -72,8 +72,7 @@ class CitiesController < ApplicationController
      
     def destroy
         @city = City.find_by_id(params[:id]).destroy
-            if @city.destroy!
-                flash[:notice] = "Okay, its gone!"
+            if @city.destroy
                 redirect_to cities_path
             else
                 render :show
