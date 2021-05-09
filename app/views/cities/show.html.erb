@@ -1,8 +1,11 @@
 <p>
-   <strong>restaurant:</strong> 
-    <% @city.restaurants.each do |restaurant|%><br />
-    <%= restaurant.name%>
+   <strong>restaurants:</strong><br />
+  <% @city.restaurants.each do |restaurant| %>
+      <ul>
+        <td><%= link_to restaurant.name, restaurant %></td>
+      </ul>
     <% end %>
+      <br />
       <strong>state or country: </strong> <%= @city.state_or_country %><br />
       <strong>Airport Code:</strong> <%= @city.airport_code %><br />
       <strong>Hotel:</strong> <%= @city.hotel %><br />
