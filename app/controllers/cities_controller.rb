@@ -7,9 +7,8 @@ class CitiesController < ApplicationController
            @restaurant = restaurant.restaurants.build
         else
             @restaurant = Restaurant.new
-            #@city = @restaurant.build_city
             @city = City.new
-            @restaurant = Restaurant.find_by_id(params[:restaurant_id])
+            set_restaurant
         end 
     end
 
@@ -24,22 +23,9 @@ class CitiesController < ApplicationController
             end   
     end 
 
-#     def create
-#         @city= City.new(city_params)
-#         #@city = City.new(restaurant_id: params[:restaurant_id])
-#         @city.user = current_user
-
-#       if @city.save
-#         redirect_to city_path #(params[:restaurant_id])
-#      else
-#       render :new
-#   end
-#     end
-
-    
     def index 
         if params[:restaurant_id]
-           @restaurant = Restaurant.find_by(id: params[:restaurant_id])
+            set_restaurant
              if restaurant.nil?
                 redirect_to restaurants_path, alert: "Not found"
              else
@@ -51,15 +37,15 @@ class CitiesController < ApplicationController
     end 
 
     def show
-        @city = City.find(params[:id])
+        set_city
     end
 
     def edit
-        @city = City.find_by_id(params[:id])
+        set_city
     end
 
     def update
-        @city = City.find_by_id(params[:id])
+        set_city
         @city.update(city_params)
             if @city.save
                redirect_to city_path      
@@ -71,7 +57,7 @@ class CitiesController < ApplicationController
 
      
     def destroy
-        @city = City.find_by_id(params[:id]).destroy
+        set_city.destroy
             if @city.destroy
                 redirect_to cities_path
             else
@@ -80,6 +66,16 @@ class CitiesController < ApplicationController
     end 
 
     private
+
+
+    def set_city
+        @city = City.find_by_id(params[:id])
+      end 
+  
+
+    def set_restaurant
+        @restaurant = Restaurant.find_by_id(params[:id])
+      end 
 
     def city_params
         params.require(:city).permit(:name, 
