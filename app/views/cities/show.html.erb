@@ -6,4 +6,7 @@
       <strong>state or country: </strong> <%= @city.state_or_country %><br />
       <strong>Airport Code:</strong> <%= @city.airport_code %><br />
       <strong>Hotel:</strong> <%= @city.hotel %><br />
+      <br />
+      <br />
+      <%= link_to "Add a Restaurant in #{@city.name}", new_restaurant_path %>
 </p>
