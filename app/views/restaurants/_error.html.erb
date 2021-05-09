@@ -1,0 +1,7 @@
+<% if @restaurant.errors.any? %>
+  <div id="error-exp">
+    <% @restaurant.errors.full_messages.each do |msg|%>
+      <li> <%= msg %> </li>
+    <% end %>
+  </div>
+<% end %>

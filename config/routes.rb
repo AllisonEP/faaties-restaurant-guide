@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'sessions#home'
+  get '/auth/google_oauth2/callback' => 'sessions#google_login'
 
 
 

@@ -7,12 +7,11 @@
     <%=f.label :username%>
     <%=f.text_field :username%>
     <br>
-    <%=f.label :email %>
-    <%=f.text_field :email%>
-    <br>
+   
     <%=f.label :password%>
     <%=f.password_field :password%>
-
+    <br>
+    <%=link_to "Login With Google", 'auth/google_oauth2', method: :post%> 
     <%= f.submit "Login" %>
     <br>
     <br>

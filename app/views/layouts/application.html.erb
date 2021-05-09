@@ -16,12 +16,12 @@
       <%= link_to "Home", root_path%> |
       <%= link_to "Create A Restaurant", new_restaurant_path %> |
       <%= link_to "Current Restaurants", restaurants_path %> |
-      <%= link_to "Create a Layover City", new_city_path %> |
+      <%= link_to "Add a new Layover!", new_city_path %> |
       <%= link_to "Current Layover Cities", cities_path %> |
       <%= link_to "Logout", logout_path, method:"delete"%>
     <%else%>
       <%=link_to "Signup", signup_path %> |
-      <%=link_to "Login", login_path %> 
+      <%=link_to "Login", login_path %> |
     <% end %>
     <div>
     <%if flash[:message]%>

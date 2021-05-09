@@ -6,7 +6,7 @@ class CitiesController < ApplicationController
         if params[:restaurant_id] && restaurant = Restaurant.find_by_id(params[:restaurant_id])
            @restaurant = restaurant.restaurants.build
         else
-            #@restaurant = Restaurant.new
+            @restaurant = Restaurant.new
             #@city = @restaurant.build_city
             @city = City.new
             @restaurant = Restaurant.find_by_id(params[:restaurant_id])
@@ -14,7 +14,7 @@ class CitiesController < ApplicationController
     end
 
     def create
-        @restaurant = current_user.restaurants.new #(restaurant_params)
+        @restaurant = current_user.restaurants.new 
         @city = current_user.cities.build(city_params)
             if @city.save!
                flash[:notice] = "city saved!"
@@ -88,6 +88,7 @@ class CitiesController < ApplicationController
         :airport_code, 
         :hotel,
         :user_id,
+        :restaurant_id,
         restaurant_attributes: [:name])
     end 
 end
