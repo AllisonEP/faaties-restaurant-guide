@@ -18,6 +18,7 @@ class RecommendationsController < ApplicationController
        if @recommendation.save
           redirect_to restaurant_path(params[:restaurant_id])
        else
+          flash.now[:messages] = @restaurant.errors.full_messages
           render :new
        end
     end

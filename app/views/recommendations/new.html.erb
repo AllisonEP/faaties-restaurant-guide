@@ -1,7 +1,6 @@
-<%= render 'error' %>
-
 <h1> What do you recommend?! </h1>
 
+<%= render 'error' %>
 <%= form_with model: [@restaurant, @recommendation], local: true do |f| %>
   <p>
     <%= f.label :try %>
