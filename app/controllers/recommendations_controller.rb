@@ -24,6 +24,15 @@ class RecommendationsController < ApplicationController
     end
 
     def show
+        if params[:restaurant_id]
+            set_restaurant
+            @recommendation = @restaurant.recommendations.find_by_id(params[:id])
+               if @recommendation.nil?
+                  #redirect_to city_restaurants_path(@city), alert: "restaurant not found"
+               end
+         else       
+            @recommendation = Recommendation.find_by_id(params[:recommendation_id])
+         end
     end
 
     def index
@@ -49,7 +58,7 @@ class RecommendationsController < ApplicationController
     end
     
     def recommendation_params
-        params.require(:recommendation).permit(:try, :avoid, :restaurant_id, :user_id)
+        params.require(:recommendation).permit(:try, :avoid, :restaurant_id, :user_id, restaurant_attributes: [:name])
     end
    
 end
