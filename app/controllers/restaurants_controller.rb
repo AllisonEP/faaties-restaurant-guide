@@ -7,7 +7,7 @@ class RestaurantsController < ApplicationController
       if params[:city_id] && !City.exists?(params[:city_id])
         redirect_to citys_path, alert: "city not found"
       else
-        @restaurant = Restaurant.new(city_id: params[:city_id])
+         set_restaurant
       end
   end 
 
@@ -24,7 +24,7 @@ class RestaurantsController < ApplicationController
 
   def index
       if params[:city_id]
-         @city = City.find_by(id: params[:city_id])
+         set_city
             if @city.nil?
               redirect_to cities_path, alert: "city not found"
             else
@@ -37,13 +37,13 @@ class RestaurantsController < ApplicationController
 
   def show
       if params[:city_id]
-         @city = City.find_by(id: params[:city_id])
+         set_city
          @restaurant = @city.restaurants.find_by(id: params[:id])
             if @restaurant.nil?
                redirect_to city_restaurants_path(@city), alert: "restaurant not found"
             end
       else
-         @restaurant = Restaurant.find(params[:id])
+         set_restaurant
       end
   end
 
@@ -57,12 +57,12 @@ class RestaurantsController < ApplicationController
               redirect_to city_restaurants_path(city), alert: "restaurant not found" if @restaurant.nil?
         end
            else
-              @restaurant = Restaurant.find(params[:id])
+            set_restaurant
         end
     end
 
     def update
-        @restaurant = Restaurant.find(params[:id])
+      set_restaurant
         @restaurant.update(restaurant_params)
           if @restaurant.save
              redirect_to @restaurant
@@ -73,7 +73,7 @@ class RestaurantsController < ApplicationController
      end
 
     def destroy
-        @restaurant = Restaurant.find_by_id(params[:id]).destroy
+         set_restaurant.destroy
           if @restaurant.destroy!
              flash[:notice] = "Okay, its gone!"
              redirect_to restaurants_path
@@ -82,11 +82,18 @@ class RestaurantsController < ApplicationController
           end 
     end
 
+
 private
 
-    def set_city
-        @city = City.find_by(id: params[:city_id])
-    end
+   def set_restaurant
+      @restaurant = Restaurant.find_by_id(params[:id])
+   end 
+
+
+   def set_city
+      @city = City.find_by_id(params[:id])
+   end 
+
 
   
     def restaurant_params
