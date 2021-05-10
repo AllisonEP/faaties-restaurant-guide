@@ -6,7 +6,7 @@ class RecommendationsController < ApplicationController
             redirect_to restaurants_path, alert: "restaurant not found"
           else
             @recommendation = Recommendation.new(restaurant_id: params[:restaurant_id])
-            @restaurant = Restaurant.find_by_id(params[:restaurant_id])
+            set_restaurant
           end
     end
 
@@ -33,6 +33,10 @@ class RecommendationsController < ApplicationController
 
     private
 
+    def set_restaurant
+        @restaurant = Restaurant.find_by_id(params[:restaurant_id])
+    end
+    
     def recommendation_params
         params.require(:recommendation).permit(:try, :avoid, :restaurant_id, :user_id)
     end
