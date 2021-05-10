@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
      before_action :redirect_if_not_logged_in?
-    #before_action :set_city, only: [:new, :create]
+     before_action :set_city, only: [:new, :create]
 
 
   def new
@@ -9,6 +9,7 @@ class RestaurantsController < ApplicationController
       else
          @restaurant = Restaurant.new(city_id: params[:city_id])
          set_city
+         
       end
   end 
 
@@ -109,6 +110,6 @@ private
         :additional_info,
         :city_id,
         :user_id,
-        city_attributes: [:name])
+        city_attributes:[])
     end
 end
