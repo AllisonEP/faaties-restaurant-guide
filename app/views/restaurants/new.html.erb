@@ -31,18 +31,16 @@
       <%= f.select :price_point, ['Newhire Pay', 'Ten Year Pay', 'Topout Pay']%>
     <div>
     </div>
+
       <label for="city_id">Select a city:</label>
       <%= f.collection_select :city_id, City.all, :id, :name, prompt: true %>
-      <%= f.hidden_field :city_id %>
-    <div>
-    </div>
-    <% if !params[:city_id] %>
+    
     <%= f.fields_for :city, @restaurant.build_city do  |cf|%>
-        <h2>Or create a new city:</h2>
+        <h2>Dont see your layover? Add it here:</h2>
         <%= cf.label :name %>
         <%= cf.text_field :name %>
         <% end %> 
-    <% end %> 
+  
     <div>
     </div>
     <%= f.submit %>
