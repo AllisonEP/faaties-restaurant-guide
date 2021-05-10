@@ -1,7 +1,8 @@
 <h1><%= @restaurant.name%></h1>
 
 <p>  
-   <strong>Location: </strong> <%= @restaurant.city.name %><br />
+
+   <strong>City: </strong> <%= @restaurant.city.name %><br />
    <strong>User:</strong> <%= @restaurant.user.username %><br />
    <strong>Hours:</strong> <%= @restaurant.hours %><br />
 
@@ -11,4 +12,6 @@
    <strong>More Info:</strong> <%= @restaurant.additional_info %><br />
 
      <%= link_to "What do you recommend?", new_restaurant_recommendation_path(@restaurant) %>
+
+     <%= link_to "What are other FAs saying?", recommendation_path %>
 </p>
