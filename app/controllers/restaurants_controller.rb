@@ -1,13 +1,14 @@
 class RestaurantsController < ApplicationController
      before_action :redirect_if_not_logged_in?
-    #  before_action :set_city, only: [:new, :create]
+    #before_action :set_city, only: [:new, :create]
 
 
   def new
       if params[:city_id] && !City.exists?(params[:city_id])
         redirect_to citys_path, alert: "city not found"
       else
-         set_restaurant
+         @restaurant = Restaurant.new(city_id: params[:city_id])
+         set_city
       end
   end 
 
@@ -38,7 +39,7 @@ class RestaurantsController < ApplicationController
   def show
       if params[:city_id]
          set_city
-         @restaurant = @city.restaurants.find_by(id: params[:id])
+         @restaurant = @city.restaurants.find_by_id(params[:id])
             if @restaurant.nil?
                redirect_to city_restaurants_path(@city), alert: "restaurant not found"
             end
@@ -49,11 +50,11 @@ class RestaurantsController < ApplicationController
 
     def edit
         if params[:city_id]
-           city = City.find_by(id: params[:city_id])
+           city = City.find_by_id(params[:city_id])
            if city.nil?
               redirect_to cities_path, alert: "city not found"
            else
-              @restaurant = city.restaurants.find_by(id: params[:id])
+              @restaurant = city.restaurants.find_by_id(params[:id])
               redirect_to city_restaurants_path(city), alert: "restaurant not found" if @restaurant.nil?
         end
            else
@@ -94,6 +95,9 @@ private
       @city = City.find_by_id(params[:id])
    end 
 
+   def display_restaurant_errors
+      flash.now[:messages] = @restaurant.errors.full_messages
+   end 
 
   
     def restaurant_params
