@@ -1,5 +1,6 @@
-<% if flash[:messages] %>
-2    <% flash[:messages].each do |message| %>
-3      <h2><%= message%></h2> <br>
-4    <% end %>
-5  <% end %>
+<ul>
+<% object.errors.full_messages.each do |error_message|%>
+<li><%= error_message %>
+</li>
+<% end %>
+</ul>
