@@ -2,9 +2,10 @@
 
 <h1> Add a new restaurant! </h1>
 
-<%= render 'error' %>
-
 <%= form_for @restaurant do |f| %>
+
+<%= render partial: 'restaurants/error', locals: {object: @restaurant}%>
+
   <p>
     <%= f.label :name %>
     <%= f.text_field :name %><br>
@@ -31,8 +32,8 @@
       <%= f.select :price_point, ['Newhire Pay', 'Ten Year Pay', 'Topout Pay']%>
     <div>
     </div>
-
-      <label for="city_id">Select a city:</label>
+    <br />
+      <label for="city_id">Select a city from the list:</label>
       <%= f.collection_select :city_id, City.all, :id, :name, prompt: true %>
     
     <%= f.fields_for :city, @restaurant.build_city do  |cf|%>

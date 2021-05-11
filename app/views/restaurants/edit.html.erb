@@ -3,8 +3,10 @@
 
 <h1> Change info on a restaurant! </h1>
 
-<%= render 'error' %>
 <%= form_for(@restaurant) do |f| %>
+
+<%= render partial: 'restaurants/error', locals: {object: @restaurant}%>
+
 <p>
   <%= f.label :name %>
   <%= f.text_field :name %><br>
