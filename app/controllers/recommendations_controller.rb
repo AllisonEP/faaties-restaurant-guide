@@ -3,37 +3,38 @@ class RecommendationsController < ApplicationController
 
     def new
         if params[:restaurant_id] && !Restaurant.exists?(params[:restaurant_id])
-            redirect_to restaurants_path, alert: "restaurant not found"
+            redirect_to restaurants_path
           else
             @recommendation = Recommendation.new(restaurant_id: params[:restaurant_id])
             set_restaurant
           end
     end
 
+
     def create
         @recommendation = Recommendation.new(recommendation_params)
         @recommendation = Recommendation.new(restaurant_id: params[:restaurant_id])
         @recommendation.user = current_user
-
-       if @recommendation.save!
+       if @recommendation.save
           redirect_to restaurant_path(params[:restaurant_id])
        else
-          flash.now[:messages] = @recommendation.errors.full_messages
           render :new
        end
     end
+
 
     def show
         if params[:restaurant_id]
             set_restaurant
             @recommendation = @restaurant.recommendations.find_by_id(params[:id])
                if @recommendation.nil?
-                  #redirect_to city_restaurants_path(@city), alert: "restaurant not found"
+                  #redirect_to city_restaurants_path(@city)
                end
          else       
             @recommendation = Recommendation.find_by_id(params[:recommendation_id])
          end
     end
+
 
     def index
         if params[:restaurant_id]
@@ -43,9 +44,9 @@ class RecommendationsController < ApplicationController
                else
                  @recommendations = @restaurant.recommendations
                end
-           else
-               @recommendations = Recommendation.all
-           end
+        else
+            @recommendations = Recommendation.all
+        end
     end
 
     def edit
