@@ -15,7 +15,7 @@ class RestaurantsController < ApplicationController
 
   def create
     @restaurant = current_user.restaurants.new(restaurant_params)
-    if @restaurant.save!
+    if @restaurant.save
       flash[:notice] = "restaurant saved!"
       redirect_to restaurant_path(@restaurant)
     else 
@@ -110,6 +110,6 @@ private
         :additional_info,
         :city_id,
         :user_id,
-        city_attributes:[])
+        city_attributes:[:name])
     end
 end

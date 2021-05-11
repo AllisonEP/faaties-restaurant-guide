@@ -11,9 +11,11 @@ class Restaurant < ApplicationRecord
   def city_name
     self.try(:city).try(:name)
   end
-
+  
   def city_attributes=(attributes)
-    city = City.find_or_create_by(attributes)
-    self.city = city if city.valid? || self.city
+    if attributes["name"] != ""
+      city = City.find_or_create_by(attributes)
+      self.city = city if city.valid? || self.city
+    end 
   end
 end
