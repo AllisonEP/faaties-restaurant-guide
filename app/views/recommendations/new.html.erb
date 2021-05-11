@@ -1,7 +1,7 @@
 <h1> What do you recommend?! </h1>
 
-<%= render 'error' %>
 <%= form_with model: [@restaurant, @recommendation], local: true do |f| %>
+  <%= render partial: 'recommendations/error', locals: {object: @recommendation}%>
   <p>
     <%= f.label :try %>
     <%= f.text_field :try %><br>
