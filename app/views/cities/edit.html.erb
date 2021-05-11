@@ -2,9 +2,8 @@
 
 <h1> Edit a layover! </h1>
 
-<%= render 'error' %>
-
 <%= form_for(@city) do |f| %>
+<%= render partial: 'cities/error', locals: {object: @city}%>
 <p>
     <%= f.label :name %>
     <%= f.text_field :name %><br>
