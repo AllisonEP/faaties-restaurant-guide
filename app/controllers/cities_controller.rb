@@ -12,22 +12,23 @@ class CitiesController < ApplicationController
         end 
     end
 
+    
     def create
         @restaurant = current_user.restaurants.new 
         @city = current_user.cities.build(city_params)
             if @city.save
                redirect_to cities_path
             else
-               flash.now[:messages] = @city.errors.full_messages
                render :new
             end   
     end 
+
 
     def index 
         if params[:restaurant_id]
             set_restaurant
              if restaurant.nil?
-                redirect_to restaurants_path, alert: "Not found"
+                redirect_to restaurants_path
              else
                 @city = @restaurant.cities 
              end 
@@ -36,13 +37,16 @@ class CitiesController < ApplicationController
         end
     end 
 
+
     def show
         set_city
     end
 
+
     def edit
         set_city
     end
+
 
     def update
         set_city
@@ -50,7 +54,6 @@ class CitiesController < ApplicationController
             if @city.save
                redirect_to city_path      
             else
-               flash.now[:messages] = @city.errors.full_messages
                render :edit 
             end
     end
@@ -64,6 +67,7 @@ class CitiesController < ApplicationController
                 render :show
         end
     end 
+
 
     private
 
