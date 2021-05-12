@@ -1,5 +1,3 @@
-
-
 <h1> Add a new restaurant! </h1>
 
 <%= form_for @restaurant do |f| %>
@@ -33,15 +31,15 @@
     <div>
     </div>
     <br />
-      <label for="city_id">Select a city from the list:</label>
-      <%= f.collection_select :city_id, City.all, :id, :name, prompt: true %>
-    
+    <label> Select a city from the list:</label>
+    <%= f.collection_select :city_id, City.all, :id, :name, prompt: true %>
+     <div>
+    </div>
     <%= f.fields_for :city, @restaurant.build_city do  |cf|%>
         <h2>Dont see your layover? Add it here:</h2>
         <%= cf.label :name %>
         <%= cf.text_field :name %>
-        <% end %> 
-  
+        <% end %>
     <div>
     </div>
     <%= f.submit %>
