@@ -14,10 +14,10 @@
     <div>
     <% if logged_in?%>
       <%= link_to "Home", root_path%> |
-      <%= link_to "Create A Restaurant", new_restaurant_path %> |
-      <%= link_to "Current Restaurants", restaurants_path %> |
+      <%= link_to "Restaurants", restaurants_path %> |
+      <%= link_to "Add A Restaurant", new_restaurant_path %> |
+      <%= link_to "Layover Cities", cities_path %> |
       <%= link_to "Add a new Layover!", new_city_path %> |
-      <%= link_to "Current Layover Cities", cities_path %> |
       <%= link_to "Logout", logout_path, method:"delete"%>
     <%else%>
       <%=link_to "Signup", signup_path %> |
