@@ -32,7 +32,7 @@ class RestaurantsController < ApplicationController
               @restaurants = @city.restaurants
             end
       else
-         @restaurants = Restaurant.all
+         @restaurants = Restaurant.all.order_by_creation
       end
     end 
 
