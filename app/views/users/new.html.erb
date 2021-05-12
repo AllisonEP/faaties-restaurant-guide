@@ -1,15 +1,16 @@
-<%= render 'error' %>
-
 <h1>Sign Up</h1>
 
 <%= form_for (@user) do |f| %>
 
+
+<%= render partial: 'users/error', locals: {object: @user}%>
+    <p>
     <%=f.label :username%>
     <%=f.text_field :username%>
     <br>
     <br>
     <br>
-You must enter your offocial company email here to register:
+    You must enter your offocial company email here to register:
     <br>
     <%=f.label :email%>
     <%=f.email_field :email%>
@@ -21,4 +22,6 @@ You must enter your offocial company email here to register:
     <br>
     <br>
     <%= f.submit "Submit" %>
+    </p>
 <% end %>
+    
