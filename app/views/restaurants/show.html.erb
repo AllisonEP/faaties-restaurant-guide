@@ -3,15 +3,17 @@
 <p>  
 
    <strong>City: </strong> <%= @restaurant.city.name %><br />
-   <strong>User:</strong> <%= @restaurant.user.username %><br />
    <strong>Hours:</strong> <%= @restaurant.hours %><br />
-
    <strong>Long or short layover? </strong> <%= @restaurant.long_or_short_layover %><br />
    <strong>Price Point:</strong> <%= @restaurant.price_point %><br />
    <strong>Discount:</strong> <%= @restaurant.discount %><br />
    <strong>More Info:</strong> <%= @restaurant.additional_info %><br />
-
-     <%= link_to "What do you recommend?", new_restaurant_recommendation_path(@restaurant) %>
-
-     <%= link_to "What are other FAs saying?", recommendation_path %>
+   <br>
+   <%= link_to "What do you recommend?", new_restaurant_recommendation_path(@restaurant) %><br />
+   <br>
+   <%= link_to "What are other FAs saying?", recommendation_path %><br />
+   <br>
+   <%= link_to "Edit #{@restaurant.name}", edit_restaurant_path(@restaurant) %><br />
+   <br>
+    <%= link_to "Delete #{@restaurant.name}", @restaurant, method: :delete, data: { confirm: "Are you sure?" } %><br/>
 </p>

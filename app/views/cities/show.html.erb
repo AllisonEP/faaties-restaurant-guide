@@ -6,14 +6,15 @@
       </ul>
     <% end %>
       <br />
+
+      <strong><%= link_to "Add a Restaurant in #{@city.name}", new_restaurant_path %></strong><br/>
+      <br>
       <strong>More on the layover </strong><br />
-       <br>
-      state or country:<%= @city.state_or_country %><br />
+      Where is it?:<%= @city.state_or_country %><br />
       Airport Code:<%= @city.airport_code %><br />
       Hotel:<%= @city.hotel %><br />
-      <%= link_to "Edit City", edit_city_path(@city) %>
-      <%= link_to "Delete City", @city, method: :delete, data: { confirm: "Are you sure?" } %>
+      <%= link_to "Edit #{@city.name}", edit_city_path(@city) %>
+      <%= link_to "Delete #{@city.name}", @city, method: :delete, data: { confirm: "Are you sure?" } %>
       <br />
       <br />
-      <strong><%= link_to "Add a Restaurant in #{@city.name}", new_restaurant_path %><strong>
 </p>

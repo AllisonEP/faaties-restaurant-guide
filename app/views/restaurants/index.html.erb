@@ -1,25 +1,11 @@
-<h1>Listing restaurants</h1>
+<h1>List of Restaurants</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<p>
     <% @restaurants.each do |restaurant| %>
-      <tr>
-        <td><%= link_to restaurant.name, restaurant %></td>
-        <td><%= link_to "Edit", edit_restaurant_path(restaurant) %></td>
-        <td><%= link_to "Destroy", restaurant, method: :delete, data: { confirm: "Are you sure?" } %></td>
-      </tr>
+      <ul>
+        <%= link_to restaurant.name, restaurant %>
+      </ul>
     <% end %>
-  </tbody>
-</table>
-
 <br>
-
 <%= link_to "New restaurant", new_restaurant_path %>
+</p>
