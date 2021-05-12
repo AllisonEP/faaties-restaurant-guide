@@ -1,27 +1,11 @@
 <h1>Listing Cities</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>City Names</th>
-      <th>Options</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<P>
     <% @city.each do |city| %>
     <ul>
-      <tr>
         <td><%= link_to city.name, city %></td>
-        <td><%= link_to "Edit", edit_city_path(city) %></td>
-        <td><%= link_to "Destroy", city, method: :delete, data: { confirm: "Are you sure?" } %></td>
-      </tr>
     </ul>
     <% end %>
-  </tbody>
-</table>
-
 <br>
-
 <%= link_to "Add a city!", new_city_path %>
+</p>
