@@ -1,5 +1,5 @@
 class Restaurant < ApplicationRecord
-
+  before_save 
   belongs_to :user
   belongs_to :city
   has_many :recommendations, :dependent => :destroy
@@ -17,5 +17,9 @@ class Restaurant < ApplicationRecord
       city = City.find_or_create_by(attributes)
       self.city = city if city.valid? || self.city
     end 
+  end
+
+  def self.order_by_creation
+    self.order(created_at: :desc)
   end
 end
