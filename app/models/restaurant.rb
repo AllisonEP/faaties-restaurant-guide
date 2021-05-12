@@ -1,5 +1,5 @@
 class Restaurant < ApplicationRecord
-  before_save 
+  before_save { self.name = name.capitalize } 
   belongs_to :user
   belongs_to :city
   has_many :recommendations, :dependent => :destroy
