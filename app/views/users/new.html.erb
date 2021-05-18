@@ -6,19 +6,20 @@
   ") if f.object.errors.any? %>
 
     <p>
-    <%=f.label :username%>
-    <%=f.text_field :username%>
+    <strong><%=f.label :username%></strong>
+    <%=f.text_field :username%><br />
+    Cannot include special characters (ex. @!^$%)
     <br>
     <br>
     <br>
-    You must enter your official company email here to register:
     <br>
-    <%=f.label :email%>
-    <%=f.email_field :email%>
+    <strong><%=f.label :email%></strong>
+    <%=f.email_field :email%><br/>
+    You must enter your official company email here to register!
     <br>
     <br>
     <br>
-    <%=f.label :password%>
+    <strong><%=f.label :password%></strong>
     <%=f.password_field :password%>
     <br>
     <br>
