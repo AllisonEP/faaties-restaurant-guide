@@ -3,7 +3,9 @@
 <h1> Add a new Layover! </h1>
 <br />
 <%= form_for @city do |f| %>
-<%= render partial: 'cities/error', locals: {object: @city}%>
+
+<%= render partial: 'layouts/error', locals: {object: @city}%>
+
 <p>
   <%= f.label :name %>
   <%= f.text_field :name %><br>

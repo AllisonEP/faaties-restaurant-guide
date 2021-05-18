@@ -2,7 +2,7 @@
 
 <%= form_for @restaurant do |f| %>
 
-<%= render partial: 'restaurants/error', locals: {object: @restaurant}%>
+<%= render partial: 'layouts/error', locals: {object: @restaurant}%>
 
   <p>
     <%= f.label :name %>
