@@ -21,25 +21,23 @@
     <%= f.text_field :additional_info%>
     <div>
     </div>
-      Long or short layover?
+    Long or short layover?
     <div>
     </div>
-      <%= f.select :long_or_short_layover, ['Long', 'Short']%>
+    <%= f.select :long_or_short_layover, ['Long', 'Short']%>
     <div>
     </div>
-      <%= f.select :price_point, ['Newhire Pay', 'Ten Year Pay', 'Topout Pay']%>
+    What will this cost?
     <div>
     </div>
-    <br />
-    <label> Select a city from the list:</label>
+    <%= f.select :price_point, ['Newhire Pay', 'Ten Year Pay', 'Topout Pay']%>
+    <div>
+    </div>
+    <label> Select the layover city:</label>
     <%= f.collection_select :city_id, City.all, :id, :name, prompt: true %>
      <div>
     </div>
-    <%= f.fields_for :city, @restaurant.build_city do  |cf|%>
-        <h2>Dont see your layover? Add it here:</h2>
-        <%= cf.label :name %>
-        <%= cf.text_field :name %>
-        <% end %>
+    <label>Dont see your layover? <%= link_to "Add it here first!", new_city_path %></label>
     <div>
     </div>
     <%= f.submit %>
