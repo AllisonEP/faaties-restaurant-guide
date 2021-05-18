@@ -1,13 +1,15 @@
 <h1>Restaurants crew members have added:</h1>
 
-<p>
+<% unless @restaurants.blank? %>
    <h2> 
    <% @restaurants.each do |restaurant| %>
-      <ul>
+      <li>
       <%= link_to restaurant.name, restaurant %>
-      </ul>
+      </li>
       <% end %>
    </h2>
     <br>
-  <%= link_to "New restaurant", new_restaurant_path %>
-</p>
+    <%= link_to "Add a New Restaurant", new_restaurant_path %>
+   <% else %>
+   <%= link_to "Be the first to add a restaurant!", new_restaurant_path %>
+   <% end %>

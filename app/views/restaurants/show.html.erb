@@ -1,6 +1,5 @@
 <h1><%= @restaurant.name%></h1>
 
-<p>  
    <strong>City: </strong> <%= @restaurant.city.name %><br />
    <strong>Hours:</strong> <%= @restaurant.hours %><br />
    <strong>Long or short layover? </strong> <%= @restaurant.long_or_short_layover %><br />
@@ -10,9 +9,8 @@
    <br>
    <%= link_to "What do you recommend?", new_restaurant_recommendation_path(@restaurant) %><br />
    <br>
-   <%= link_to "What are other FAs saying?", recommendation_path %><br />
+   <%= link_to "What are other FAs saying?", restaurant_recommendations_path(@restaurant) %><br />
    <br>
    <%= link_to "Edit #{@restaurant.name}", edit_restaurant_path(@restaurant) %><br />
    <br>
    <%= link_to "Delete #{@restaurant.name}", @restaurant, method: :delete, data: { confirm: "Are you sure?" } %><br/>
-</p>
