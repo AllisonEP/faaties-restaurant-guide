@@ -1,1 +1,9 @@
-<h1> Welcome </h1>
+<% unless logged_in? %>
+<h1> F A A ties Restaurant Guide </h1>
+<h2> A restaurant guide for hungry FAs. </h2>
+<% else %>
+<h1> F A A ties Restaurant Guide </h1>
+<h2> A restaurant guide for hungry FAs. </h2>
+<h3>Help eachother out by adding your favorite (or least favorite) layover restaurants.</h3>
+<% end %>
+
