@@ -1,15 +1,21 @@
 <h1>Here's what FAs are recommending</h1>
 
-<strong><h2>What you should try:</h2></strong>
-    <% @recommendations.each do |recommendation| %>
-      <li>
-        <%= recommendation.try %><br />
-      </li>
-    <% end %>
+<% unless @recommendations.blank? %>
+
+  <strong><h2>What you should try:</h2></strong>
+      <% @recommendations.each do |recommendation| %>
+        <li>
+          <%= recommendation.try %><br />
+        </li>
+        <% end %>
     <br>
+
     <strong><h2>What you should avoid:</h2></strong>
-    <% @recommendations.each do |recommendation| %>
-      <li>
-        <%= recommendation.avoid %><br />
-      </li>
-    <% end %>  
+      <% @recommendations.each do |recommendation| %>
+        <li>
+          <%= recommendation.avoid %><br />
+        </li>
+        <% end %>  
+  <% else %>
+     No recommedations exist for this restaurant yet. <%= link_to "Be the first to add one here", new_restaurant_recommendation_path(@restaurant) %>
+    <% end %>

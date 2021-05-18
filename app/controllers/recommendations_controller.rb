@@ -3,19 +3,22 @@ class RecommendationsController < ApplicationController
 
     def new
         if params[:restaurant_id] && !Restaurant.exists?(params[:restaurant_id])
+            redirect_to restaurants_path, alert: "restaurant not found"
             redirect_to restaurants_path
           else
-            @recommendation.restaurant_id = params[:restaurant_id]
+            @recommendation = Recommendation.new(restaurant_id: params[:restaurant_id])
             set_restaurant
           end
     end
 
 
+
+
     def create
         @recommendation = Recommendation.new(recommendation_params)
-        @recommendation = Recommendation.new(restaurant_id: params[:restaurant_id])
+        @recommendation.restaurant_id = params[:restaurant_id]
         @recommendation.user = current_user
-       if @recommendation.save
+       if @recommendation.save!
           redirect_to restaurant_path(params[:restaurant_id])
        else
           render :new
@@ -40,7 +43,7 @@ class RecommendationsController < ApplicationController
         if params[:restaurant_id]
             set_restaurant
                if @restaurant.nil?
-                 redirect_to restaurants_path, alert: "Restaurant not found"
+                 redirect_to restaurants_path
                else
                  @recommendations = @restaurant.recommendations
                end
