@@ -1,19 +1,20 @@
 <h1><%= "Where can you eat in #{@city.name}?"%></h1>
 <p>
-  <% @city.restaurants.each do |restaurant| %>
+  <h2><% @city.restaurants.each do |restaurant| %>
       <ul>
         <%= link_to restaurant.name, restaurant %>
       </ul>
     <% end %>
+  </h2>
       <br />
-
       <strong><%= link_to "Add a Restaurant in #{@city.name}", new_restaurant_path %></strong><br/>
       <br>
-      <strong>More on the layover </strong><br />
-      Where is it?:<%= @city.state_or_country %><br />
-      Airport Code:<%= @city.airport_code %><br />
-      Hotel:<%= @city.hotel %><br />
-      <%= link_to "Edit #{@city.name}", edit_city_path(@city) %>
+      <strong><%= "More about the layover in #{@city.name}" %></strong><br />
+        Where is it?:<%= @city.state_or_country %><br />
+        Airport Code:<%= @city.airport_code %><br />
+        Hotel:<%= @city.hotel %><br />
+      <br>
+      <%= link_to "Edit #{@city.name}", edit_city_path(@city) %><br/>
       <%= link_to "Delete #{@city.name}", @city, method: :delete, data: { confirm: "Are you sure?" } %>
       <br />
       <br />
