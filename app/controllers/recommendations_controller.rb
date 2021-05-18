@@ -5,7 +5,7 @@ class RecommendationsController < ApplicationController
         if params[:restaurant_id] && !Restaurant.exists?(params[:restaurant_id])
             redirect_to restaurants_path
           else
-            @recommendation = Recommendation.new(restaurant_id: params[:restaurant_id])
+            @recommendation.restaurant_id = params[:restaurant_id]
             set_restaurant
           end
     end
@@ -59,7 +59,11 @@ class RecommendationsController < ApplicationController
     end
     
     def recommendation_params
-        params.require(:recommendation).permit(:try, :avoid, :restaurant_id, :user_id, restaurant_attributes: [:name])
+        params.require(:recommendation).permit(:try,
+         :avoid,
+         :restaurant_id,
+         :user_id, 
+         restaurant_attributes: [:name])
     end
    
 end
