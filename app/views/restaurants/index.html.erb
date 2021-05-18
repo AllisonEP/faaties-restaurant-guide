@@ -1,11 +1,12 @@
-<h1>List of Restaurants</h1>
+<h1>Restaurants crew members have added:</h1>
 
 <p>
-    <% @restaurants.each do |restaurant| %>
+   <h2> <% @restaurants.each do |restaurant| %>
       <ul>
         <%= link_to restaurant.name, restaurant %>
       </ul>
     <% end %>
+    </h2>
 <br>
 <%= link_to "New restaurant", new_restaurant_path %>
 </p>
