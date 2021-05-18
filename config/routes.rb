@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     resources :restaurants 
   end
 
-  resources :users, only: [:new, :index, :show, :create, :destroy] 
+  resources :users, only: [:new, :show, :create] 
 
   resources :restaurants do
     resources :recommendations
