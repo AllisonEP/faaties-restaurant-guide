@@ -1,13 +1,15 @@
 <h1>Here's what FAs are recommending</h1>
 
-<h1>Restaurants crew members have added:</h1>
-
-<p>
-   <h2> <% @recommendations.each do |recommendation| %>
-      <ul>
-        <%= recommendation.try %>
-        <%= recommendation.avoid %>
-      </ul>
+<strong><h2>What you should try:</h2></strong>
+    <% @recommendations.each do |recommendation| %>
+      <li>
+        <%= recommendation.try %><br />
+      </li>
     <% end %>
-    </h2>
-<br>
+    <br>
+    <strong><h2>What you should avoid:</h2></strong>
+    <% @recommendations.each do |recommendation| %>
+      <li>
+        <%= recommendation.avoid %><br />
+      </li>
+    <% end %>  
