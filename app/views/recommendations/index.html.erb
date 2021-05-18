@@ -1,1 +1,13 @@
-<h1>Recommendations Index</h1>
+<h1>Here's what FAs are recommending</h1>
+
+<h1>Restaurants crew members have added:</h1>
+
+<p>
+   <h2> <% @recommendations.each do |recommendation| %>
+      <ul>
+        <%= recommendation.try %>
+        <%= recommendation.avoid %>
+      </ul>
+    <% end %>
+    </h2>
+<br>
