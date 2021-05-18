@@ -9,11 +9,11 @@ class SessionsController < ApplicationController
                session[:user_id] = user.id
                redirect_to user_path(user)
             else 
+               flash[:message] = "Something isn't right. Check your username and password were entered correctly"
                redirect_to "/login"
            end 
     end
 
-      # question: can we walk through this 
 
     def destroy
         session.clear
