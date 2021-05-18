@@ -1,9 +1,9 @@
 <h1><%= "Where can you eat in #{@city.name}?"%></h1>
-<p>
+
   <h2><% @city.restaurants.each do |restaurant| %>
-      <ul>
+      <li>
         <%= link_to restaurant.name, restaurant %>
-      </ul>
+      </li>
     <% end %>
   </h2>
       <br />
