@@ -23,10 +23,6 @@
       <%=link_to "Signup", signup_path %> |
       <%=link_to "Login", login_path %> |
     <% end %>
-    <div>
-    <%if flash[:message]%>
-      <%= flash[:message]%>
-    <% end %>
       <%= @error%>
     <%= yield %>
   </body>
