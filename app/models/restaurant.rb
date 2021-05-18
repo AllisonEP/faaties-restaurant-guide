@@ -4,9 +4,11 @@ class Restaurant < ApplicationRecord
   belongs_to :city
   has_many :recommendations, :dependent => :destroy
   accepts_nested_attributes_for :city, reject_if: :all_blank
+  accepts_nested_attributes_for :recommendations, reject_if: :all_blank
   validates :name, presence: true
   validates :additional_info, length: {minimum: 5, maximum: 200}, allow_blank: true
   validates_associated :city
+  scope :order_by_name, -> { order("name asc") }
 
   def city_name
     self.try(:city).try(:name)
@@ -19,7 +21,4 @@ class Restaurant < ApplicationRecord
     end 
   end
 
-  def self.order_by_creation
-    self.order(created_at: :desc)
-  end
 end

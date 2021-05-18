@@ -7,9 +7,6 @@ class City < ApplicationRecord
     validates_uniqueness_of :name, :case_sensitive => false
     validates :state_or_country, length: {minimum: 3, maximum: 25}, allow_blank: true
     validates :airport_code, length: {is: 3}, allow_blank: true
+    scope :order_by_name, -> { order("name asc") }
 
-
-  def self.order_by_alphabet
-    self.order(name: :asc)
-  end
 end
