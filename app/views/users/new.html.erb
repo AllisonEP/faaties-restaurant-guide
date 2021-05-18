@@ -2,15 +2,16 @@
 
 <%= form_for (@user) do |f| %>
 
+ <%= f.object.errors.full_messages.join(",
+  ") if f.object.errors.any? %>
 
-<%= render partial: 'users/error', locals: {object: @user}%>
     <p>
     <%=f.label :username%>
     <%=f.text_field :username%>
     <br>
     <br>
     <br>
-    You must enter your offocial company email here to register:
+    You must enter your official company email here to register:
     <br>
     <%=f.label :email%>
     <%=f.email_field :email%>

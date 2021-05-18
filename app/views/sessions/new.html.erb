@@ -3,7 +3,9 @@
 
 <%= form_for :user do |f| %>
 
-
+    <%= flash[:message] if flash[:message] %>   
+    <div>
+    </div  >
     <%=f.label :username%>
     <%=f.text_field :username%>
     <br>
