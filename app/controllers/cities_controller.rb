@@ -1,21 +1,18 @@
 class CitiesController < ApplicationController
     before_action :redirect_if_not_logged_in?
-    
+    before_action :set_city, except: [:new, :create, :index]
+    # this helps make the code cleaner to remove all the city_city I added 
 
     def new
-        if params[:restaurant_id] && restaurant = Restaurant.find_by_id(params[:restaurant_id])
-           @restaurant = restaurant.restaurants.build
-        else
-            @restaurant = Restaurant.new
-            @city = City.new
-            set_restaurant
-        end 
+            @city = City.new     
     end
+    #tells new form this is the city we are talking about 
 
-    
+ 
     def create
-        @restaurant = current_user.restaurants.new 
         @city = current_user.cities.build(city_params)
+        # creating a new instance of city class & associating it w the user 
+        # it is plural bc it is a has many relationship and .city would exist per rails
             if @city.save
                redirect_to cities_path
             else
@@ -23,33 +20,21 @@ class CitiesController < ApplicationController
             end   
     end 
 
-
     def index 
-        if params[:restaurant_id]
-            set_restaurant
-             if restaurant.nil?
-                redirect_to restaurants_path
-             else
-                @city = @restaurant.cities 
-             end 
-        else
-           @city = City.all.order_by_alphabet
+           @cities = City.all.order_by_name
+           # order all of the cities in alphabetical order and sending that message to the view to do 
+           # change this instancee variable in the index view for cities
         end
-    end 
 
-
+      
     def show
-        set_city
     end
 
-
     def edit
-        set_city
     end
 
 
     def update
-        set_city
         @city.update(city_params)
             if @city.save
                redirect_to city_path      
@@ -60,7 +45,6 @@ class CitiesController < ApplicationController
 
      
     def destroy
-        set_city.destroy
             if @city.destroy
                 redirect_to cities_path
             else
@@ -77,17 +61,12 @@ class CitiesController < ApplicationController
       end 
   
 
-    def set_restaurant
-        @restaurant = Restaurant.find_by_id(params[:id])
-      end 
 
     def city_params
         params.require(:city).permit(:name, 
         :state_or_country, 
         :airport_code, 
         :hotel,
-        :user_id,
-        :restaurant_id,
-        restaurant_attributes: [:name])
+        :user_id)
     end 
 end
