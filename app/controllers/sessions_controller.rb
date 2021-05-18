@@ -9,10 +9,11 @@ class SessionsController < ApplicationController
                session[:user_id] = user.id
                redirect_to user_path(user)
             else 
-               flash[:message] = "How did you get this trip? Try again!"
                redirect_to "/login"
            end 
     end
+
+      # question: can we walk through this 
 
     def destroy
         session.clear
