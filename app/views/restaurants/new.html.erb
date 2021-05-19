@@ -9,10 +9,6 @@
     <%= f.text_field :name %><br>
     <div>
     </div>
-    <%= f.label :hours%>
-    <%= f.text_field :hours%>
-    <div>
-    </div>
     <%=f.label :discount%>
     <%= f.text_field :discount%>
     <div>
@@ -33,7 +29,7 @@
     <%= f.select :price_point, ['Newhire Pay', 'Ten Year Pay', 'Topout Pay']%>
     <div>
     </div>
-    <label> Select the layover city:</label>
+    <label> Select the layover city:</label><br />
     <%= f.collection_select :city_id, City.all, :id, :name, prompt: true %>
      <div>
     </div>

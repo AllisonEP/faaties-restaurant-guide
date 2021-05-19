@@ -14,8 +14,10 @@
         Airport Code:<%= @city.airport_code %><br />
         Hotel:<%= @city.hotel %><br />
       <br>
+      <% if current_user && current_user == @city.user %>
       <%= link_to "Edit #{@city.name}", edit_city_path(@city) %><br/>
       <%= link_to "Delete #{@city.name}", @city, method: :delete, data: { confirm: "Are you sure?" } %>
       <br />
       <br />
+      <% end %>
 </p>
