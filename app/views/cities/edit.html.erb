@@ -1,28 +1,5 @@
 <h1> Edit a layover! </h1>
 
-<%= form_for(@city) do |f| %>
-
 <%= render partial: 'layouts/error', locals: {object: @city}%>
-<%# 
-# question: is this just me telling where to look and that this is for a specific instance of city? object is what we are usingin in the partial itself, here i am assigning that object as city %>
 
-<p>
-    <%= f.label :name %>
-    <%= f.text_field :name %><br>
-      <div>
-      </div>
-    <%= f.label :hotel%>
-    <%= f.text_field :hotel%>
-      <div>
-      </div>
-    <%=f.label :airport_code%>
-    <%= f.text_field :airport_code%>
-      <div>
-      </div>
-    <%=f.label :state_or_country%>
-    <%= f.text_field :state_or_country%>
-      <div>
-      </div>
-    <%= f.submit %>
-</p>
-<% end %> 
+<%= render 'form' %>
